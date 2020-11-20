@@ -5,7 +5,6 @@ import { Row, Col, Card, Container } from 'react-bootstrap'
 import Category from '../components/Category'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import Header from '../components/Header'
 import { ReactComponent as Bathroom } from '../assets/bathroom.svg'
 import { ReactComponent as Bedroom } from '../assets/bedroom.svg'
 import { ReactComponent as House } from '../assets/house.svg'
@@ -42,7 +41,6 @@ const Property = ({ match }) => {
   }, [dispatch, locationKey])
   return (
     <>
-      <Header />
       {loading ? (
         <Loader />
       ) : error ? (

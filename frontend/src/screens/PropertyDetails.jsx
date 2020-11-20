@@ -8,7 +8,6 @@ import { ReactComponent as House } from '../assets/house.svg'
 import { ReactComponent as Squarefit } from '../assets/squarefit.svg'
 import { ReactComponent as MediaIcons } from '../assets/mediaIcons.svg'
 import { addToShortlist } from '../actions/shortlistActions'
-import Header from '../components/Header'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
@@ -51,7 +50,6 @@ const PropertyDetails = ({ match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Header />
           <Carousel
             controls={false}
             className="property-carousel"
@@ -107,7 +105,7 @@ const PropertyDetails = ({ match }) => {
                     </Row>
                     <Row className="align-items-center">
                       {[...Array(6)].map((_, i) => (
-                        <Col xs={4}>
+                        <Col xs={4} key={i}>
                           <Button
                             style={{
                               backgroundColor: 'transparent',

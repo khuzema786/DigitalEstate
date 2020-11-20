@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import Header from '../components/Header'
 import { register } from '../actions/userActions'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -39,7 +38,6 @@ const Register = ({ history }) => {
 
   return (
     <>
-      <Header />
       <Container className="py-5">
         <FormContainer>
           <h3 className="login-h3">Register</h3>
@@ -119,7 +117,7 @@ const Register = ({ history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="password">
+            <Form.Group controlId="confirmPassword">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"

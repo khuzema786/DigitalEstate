@@ -6,7 +6,7 @@ import {
   getUserProfile,
   updateUserProfile,
 } from '../controllers/userController.js'
-import { protect, admin } from '../middleware/authMiddleware.js'
+import { protect, provider } from '../middleware/authMiddleware.js'
 
 router.route('/').post(registerUser)
 // .get(protect, admin, getUsers)

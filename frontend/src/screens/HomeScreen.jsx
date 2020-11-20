@@ -1,8 +1,6 @@
 import React from 'react'
 import { Row, Col, Container, Card, CardDeck, Carousel } from 'react-bootstrap'
-import Header from '../components/Header'
 import { Link } from 'react-router-dom'
-import Footer from '../components/Footer'
 import Background from '../assets/Background.jpg'
 import City1 from '../assets/city1.jpg'
 import City2 from '../assets/city2.jpg'
@@ -23,7 +21,6 @@ const HomeScreen = ({ setclick }) => {
   }
   return (
     <>
-      <Header />
       <Container className="p-5">
         <Row>
           <Col xs={4} md={6} className="pt-5">
@@ -222,7 +219,6 @@ const HomeScreen = ({ setclick }) => {
           <img src={Sponsors} alt="sponsors" />
         </Row>
       </Container>
-      {/* <Footer /> */}
     </>
   )
 }

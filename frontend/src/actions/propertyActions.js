@@ -6,7 +6,11 @@ import {
   PROPERTY_DETAILS_REQUEST,
   PROPERTY_DETAILS_SUCCESS,
   PROPERTY_DETAILS_FAIL,
+  PROPERTY_CREATE_REQUEST,
+  PROPERTY_CREATE_SUCCESS,
+  PROPERTY_CREATE_FAIL,
 } from '../constants/propertyConstants'
+import { logout } from './userActions'
 
 export const listProperty = (keyword = '') => async (dispatch) => {
   try {
@@ -46,6 +50,42 @@ export const listPropertyDetails = (id) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    })
+  }
+}
+
+export const createProperty = (body) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PROPERTY_CREATE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.post(`/api/property/`, body, config)
+
+    dispatch({
+      type: PROPERTY_CREATE_SUCCESS,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
+    dispatch({
+      type: PROPERTY_CREATE_FAIL,
+      payload: message,
     })
   }
 }

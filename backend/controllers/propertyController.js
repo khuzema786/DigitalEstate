@@ -56,24 +56,14 @@ const getPropertyById = asyncHandler(async (req, res) => {
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
-// const createProperty = asyncHandler(async (req, res) => {
-//   const property = new Property({
-//     name: 'Sample name',
-//     images: '/images/airpods.jpg',
-//     description: 'saample data',
-//     size: 0,
-//     bedrooms: 0,
-//     bathrooms: 0,
-//     country: 'sample',
-//     price: 0,
-//     maintainance: 0,
-//     year: 0,
-//     location: 'sample',
-//   })
-
-//   const createProperty = await property.save()
-//   res.status(201).json(createdProperty)
-// })
+const createProperty = asyncHandler(async (req, res) => {
+  const property = await Property.create({
+    ...req.body,
+    user: req.user._id,
+  })
+  res.status(200)
+  res.json('Property Created')
+})
 
 // // @desc    Update a product
 // // @route   PUT /api/products/:id
@@ -162,7 +152,7 @@ export {
   getProperty,
   getPropertyById,
   // deleteProduct,
-  // createProduct,
+  createProperty,
   // updateProduct,
   // createProductReview,
   // getTopProducts,

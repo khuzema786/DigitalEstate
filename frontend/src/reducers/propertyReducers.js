@@ -5,6 +5,10 @@ import {
   PROPERTY_DETAILS_REQUEST,
   PROPERTY_DETAILS_SUCCESS,
   PROPERTY_DETAILS_FAIL,
+  PROPERTY_CREATE_REQUEST,
+  PROPERTY_CREATE_SUCCESS,
+  PROPERTY_CREATE_FAIL,
+  PROPERTY_CREATE_RESET,
 } from '../constants/propertyConstants'
 
 export const propertyListReducer = (state = { property: [] }, action) => {
@@ -34,6 +38,21 @@ export const propertyDetailsReducer = (
       return { loading: false, property: action.payload }
     case PROPERTY_DETAILS_FAIL:
       return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const propertyCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PROPERTY_CREATE_REQUEST:
+      return { ...state, loading: true }
+    case PROPERTY_CREATE_SUCCESS:
+      return { loading: false, success: true }
+    case PROPERTY_CREATE_FAIL:
+      return { loading: false, error: action.payload }
+    case PROPERTY_CREATE_RESET:
+      return {}
     default:
       return state
   }

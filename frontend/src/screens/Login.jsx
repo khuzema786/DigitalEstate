@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import Header from '../components/Header'
 import ProfileSteps from '../components/ProfileSteps'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../actions/userActions'
@@ -31,11 +30,9 @@ const Login = ({ history }) => {
 
   return (
     <>
-      <Header />
       <Container className="py-5">
         <FormContainer>
           <ProfileSteps step1 />
-
           <h3 className="login-h3">SIGN IN</h3>
           {error && <Message variant="danger">{error}</Message>}
           {loading && <Loader />}

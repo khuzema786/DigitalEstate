@@ -8,7 +8,6 @@ import { ReactComponent as Bathroom } from '../assets/bathroom.svg'
 import { ReactComponent as Bedroom } from '../assets/bedroom.svg'
 import { ReactComponent as House } from '../assets/house.svg'
 import { ReactComponent as Squarefit } from '../assets/squarefit.svg'
-import Header from '../components/Header'
 import Message from '../components/Message'
 import ProfileSteps from '../components/ProfileSteps'
 
@@ -25,7 +24,6 @@ const Shortlist = () => {
 
   return (
     <>
-      <Header />
       {shortlistItems.length === 0 ? (
         <Message>
           Your shortlist is empty <Link to="/">Go Back</Link>

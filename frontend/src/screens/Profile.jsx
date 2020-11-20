@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import Header from '../components/Header'
 import { register } from '../actions/userActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -82,7 +81,6 @@ const Profile = ({ history }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Header />
           <Container className="py-5">
             <ProfileSteps step3 />
             <FormContainer>

@@ -5,6 +5,7 @@ import { shortlistReducer } from './reducers/shortlistReducers'
 import {
   propertyListReducer,
   propertyDetailsReducer,
+  propertyCreateReducer,
 } from './reducers/propertyReducers'
 import {
   userLoginReducer,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   shortlist: shortlistReducer,
+  propertyCreate: propertyCreateReducer,
 })
 
 const shortlistItemsFromStorage = localStorage.getItem('shortlistItems')

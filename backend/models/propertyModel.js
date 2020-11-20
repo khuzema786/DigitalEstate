@@ -17,10 +17,8 @@ const propertySchema = mongoose.Schema(
     },
     images: [
       {
-        image: {
-          type: String,
-          required: true,
-        },
+        type: String,
+        required: true,
       },
     ],
     description: {

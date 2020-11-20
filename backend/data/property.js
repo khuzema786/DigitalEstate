@@ -1,10 +1,7 @@
 const property = [
   {
     name: 'Shakun Marvel',
-    images: [
-      { image: '/images/airpods.jpg' },
-      { image: '/images/airpods.jpg' },
-    ],
+    images: ['/images/airpods.jpg', '/images/airpods.jpg'],
     type: 'House',
     description:
       'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
@@ -19,10 +16,7 @@ const property = [
   },
   {
     name: 'Rajgarh Apartments',
-    images: [
-      { image: '/images/airpods.jpg' },
-      { image: '/images/airpods.jpg' },
-    ],
+    images: ['/images/airpods.jpg', '/images/airpods.jpg'],
     type: 'House',
     description:
       'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
@@ -37,10 +31,7 @@ const property = [
   },
   {
     name: 'Shilpa Sonawani',
-    images: [
-      { image: '/images/airpods.jpg' },
-      { image: '/images/airpods.jpg' },
-    ],
+    images: ['/images/airpods.jpg', '/images/airpods.jpg'],
     type: 'House',
     description:
       'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
@@ -55,10 +46,7 @@ const property = [
   },
   {
     name: 'Agarwal Apartments',
-    images: [
-      { image: '/images/airpods.jpg' },
-      { image: '/images/airpods.jpg' },
-    ],
+    images: ['/images/airpods.jpg', '/images/airpods.jpg'],
     type: 'House',
     description:
       'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
@@ -73,10 +61,7 @@ const property = [
   },
   {
     name: 'Mandal Heights',
-    images: [
-      { image: '/images/airpods.jpg' },
-      { image: '/images/airpods.jpg' },
-    ],
+    images: ['/images/airpods.jpg', '/images/airpods.jpg'],
     type: 'House',
     description:
       'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
