@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: var(--Montserrat);
+}
+
+:root {
+  --Montserrat: 'Montserrat', sans-serif;
+  --Poppins: 'Poppins', sans-serif;
+  --Roboto: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--Montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  height: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+/* Login.jsx */
+
+.login-h3 {
+  font-family: var(--Montserrat);
+  font-weight: 700;
+}
+
+/* register.jsx */
+
+[type='radio'] {
+  display: none;
+}
+
+/* ProductDetails.jsx */
+
+.property-carousel li {
+  visibility: hidden;
+}
+/* 
+mainpage */
