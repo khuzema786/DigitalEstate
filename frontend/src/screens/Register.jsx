@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Row, Col, Container } from 'react-bootstrap'
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Container,
+  ButtonGroup,
+  ToggleButton,
+} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer'
 import Message from '../components/Message'
@@ -10,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const Register = ({ history }) => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
-  const [type, setType] = useState('provider')
+  // const [type, setType] = useState('provider')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -32,9 +40,15 @@ const Register = ({ history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(register(name, email, password))
+      dispatch(register(name, email, password, radioValue))
     }
   }
+  const [radioValue, setRadioValue] = useState('true')
+
+  const radios = [
+    { name: 'provider', value: 'true' },
+    { name: 'buyer', value: 'false' },
+  ]
 
   return (
     <>
@@ -46,35 +60,73 @@ const Register = ({ history }) => {
           {loading && <Loader />}
           <Form onSubmit={submitHandler}>
             <Row className="p-3">
-              <Form.Check
+              {/* <Button
                 className="p-2"
-                style={{
-                  backgroundColor: '#00B4A2',
-                  color: 'white',
+                style={(() => {
+                  if (type === 'provider')
+                    return {
+                      backgroundColor: '#00B4A2',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '0px',
+                      outline: 'none',
+                    }
+                  else
+                    return {
+                      backgroundColor: 'white',
+                      color: '#00B4A2',
+                      border: '1px solid #00B4A2',
+                      borderRadius: '0px',
+                      cursor: 'pointer',
+                    }
+                })()}
+                onClick={(e) => {
+                  setType(e.target.innerText.toLowerCase())
                 }}
-                type="radio"
-                label="Provider"
-                id="provider"
-                name="type"
-                value="provider"
-                checked={type === 'provider'}
-                onChange={(e) => setType(e.target.value)}
-              ></Form.Check>
-              <Form.Check
-                className="p-2 mx-3"
-                style={{
-                  border: '1px solid #00B4A2',
-                  color: '#00B4A2',
-                  cursor: 'pointer',
+              >
+                Provider
+              </Button>
+              <Button
+                className="p-2"
+                style={(() => {
+                  if (type === 'buyer')
+                    return {
+                      backgroundColor: '#00B4A2',
+                      borderRadius: '0px',
+                      color: 'white',
+                      border: 'none',
+                      outline: 'none',
+                    }
+                  else
+                    return {
+                      backgroundColor: 'white',
+                      color: '#00B4A2',
+                      border: '1px solid #00B4A2',
+                      borderRadius: '0px',
+                      cursor: 'pointer',
+                    }
+                })()}
+                onClick={(e) => {
+                  setType(e.target.innerText.toLowerCase())
                 }}
-                type="radio"
-                label="Buyer"
-                id="buyer"
-                name="type"
-                value="buyer"
-                checked={type === 'buyer'}
-                onChange={(e) => setType(e.target.value)}
-              ></Form.Check>
+              >
+                Buyer
+              </Button> */}
+              <ButtonGroup toggle>
+                {radios.map((radio, idx) => (
+                  <ToggleButton
+                    key={idx}
+                    type="radio"
+                    variant="primary"
+                    name="radio"
+                    value={radio.value}
+                    checked={radioValue === radio.value}
+                    onChange={(e) => setRadioValue(e.currentTarget.value)}
+                  >
+                    {radio.name}
+                  </ToggleButton>
+                ))}
+              </ButtonGroup>
             </Row>
 
             <Form.Group controlId="name">

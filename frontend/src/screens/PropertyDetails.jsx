@@ -34,6 +34,9 @@ const PropertyDetails = ({ match }) => {
   const propertyDetails = useSelector((state) => state.propertyDetails)
   const { loading, error, property } = propertyDetails
 
+  const shortList = useSelector((state) => state.shortlist)
+  const { success } = shortList
+
   console.log(property)
   useEffect(() => {
     dispatch(listPropertyDetails(propertyId))
@@ -55,7 +58,7 @@ const PropertyDetails = ({ match }) => {
           >
             {property.images.map((image) => (
               <Carousel.Item key={image._id} style={propertyStyle.image}>
-                {image.image}
+                {image}
               </Carousel.Item>
             ))}
           </Carousel>
@@ -82,10 +85,10 @@ const PropertyDetails = ({ match }) => {
                 <ListGroup variant="flush">
                   <ListGroup.Item>
                     <Row className="align-items-center">
-                      <Col xs={7}>
+                      <Col xs={6}>
                         <span>Total Price</span> <p>INR 1,47,890</p>
                       </Col>
-                      <Col xs={5}>
+                      <Col xs={6}>
                         <Button
                           style={{ backgroundColor: '#00B4A2', border: 'none' }}
                           type="submit"
@@ -108,7 +111,8 @@ const PropertyDetails = ({ match }) => {
                               backgroundColor: 'transparent',
                               color: '#000',
                               border: '1px solid #00B4A2',
-                              width: '113px',
+                              fontSize: '12px',
+                              width: '95px',
                             }}
                             className="my-2"
                             type="submit"

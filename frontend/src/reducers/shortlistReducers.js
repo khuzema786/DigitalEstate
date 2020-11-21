@@ -30,6 +30,7 @@ export const shortlistReducer = (state = { shortlistItems: [] }, action) => {
       } else {
         return {
           ...state,
+          success: true,
           shortlistItems: [...state.shortlistItems, item],
         }
       }

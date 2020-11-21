@@ -5,13 +5,16 @@ import { Row, Col, Card, Container } from 'react-bootstrap'
 import Category from '../components/Category'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Chatbottt from '../components/Bott'
 import { ReactComponent as Bathroom } from '../assets/bathroom.svg'
 import { ReactComponent as Bedroom } from '../assets/bedroom.svg'
 import { ReactComponent as House } from '../assets/house.svg'
 import { ReactComponent as Squarefit } from '../assets/squarefit.svg'
 import MyCarousel from '../components/MyCarousel'
 import { listProperty } from '../actions/propertyActions'
-
+import { Route } from 'react-router-dom'
+import SearchBox from '../components/SearchBox'
+import Bott from '../components/Bott'
 const location = {
   1: 'Pune',
   2: 'Kota',
@@ -20,6 +23,7 @@ const location = {
   5: 'Jaipur',
 }
 const Property = ({ match }) => {
+  const keyword = match.params.keyword
   const [selector, setSelector] = useState(0)
   const locationKey = match.params.location
 
@@ -37,10 +41,19 @@ const Property = ({ match }) => {
       setSelector(locationKey)
     }
     //is used for a request for the products to the backend
-    dispatch(listProperty())
-  }, [dispatch, locationKey])
+    dispatch(listProperty(keyword))
+  }, [dispatch, locationKey, keyword])
   return (
     <>
+      {!keyword ? (
+        <h3 className="pl-5">Los Angeles, CA Homes for Sale & Real Estate</h3>
+      ) : (
+        <span className="pl-5">
+          <Link to="/property" className="btn btn-light ">
+            Go Back
+          </Link>
+        </span>
+      )}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -48,7 +61,12 @@ const Property = ({ match }) => {
       ) : (
         <>
           <Container>
-            <h3>Los Angeles, CA Homes for Sale & Real Estate</h3>
+            <span className="pt-4">
+              <Route
+                render={({ history }) => <SearchBox history={history} />}
+              />
+            </span>
+
             <Row>
               <Category setSelector={setSelector} className="my-4" />
               <span className="mt-2" variant="primary">
@@ -97,7 +115,9 @@ const Property = ({ match }) => {
                 </Col>
               ))}
             </Row>
+            <Chatbottt />
           </Container>
+          <Bott />
         </>
       )}
     </>

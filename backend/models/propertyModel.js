@@ -29,6 +29,10 @@ const propertySchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    option: {
+      type: String,
+      required: true,
+    },
     bedrooms: {
       type: Number,
       required: true,

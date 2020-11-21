@@ -54,12 +54,6 @@ code {
   font-weight: 700;
 }
 
-/* register.jsx */
-
-[type='radio'] {
-  display: none;
-}
-
 /* ProductDetails.jsx */
 
 .property-carousel li {
@@ -67,3 +61,8 @@ code {
 }
 /* 
 mainpage */
+@media(max-width: 300px){
+  .image-home{
+    width: 10rem;
+  }
+}

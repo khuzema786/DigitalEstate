@@ -6,7 +6,9 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { createProperty } from '../actions/propertyActions'
+import { upload } from '../actions/uploadActions'
 import { PROPERTY_CREATE_RESET } from '../constants/propertyConstants'
+import { UPLOAD_RESET } from '../constants/uploadConstants'
 
 const AddProperty = ({ history }) => {
   const [name, setName] = useState('')
@@ -20,50 +22,41 @@ const AddProperty = ({ history }) => {
   const [year, setYear] = useState(0)
   const [bathrooms, setBathrooms] = useState(0)
   const [bedrooms, setBedrooms] = useState(0)
-  const [uploading, setUploading] = useState(false)
   const [message, setMessage] = useState('')
   const [images, setImages] = useState('')
 
   const dispatch = useDispatch()
 
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   const createPropertyState = useSelector((state) => state.propertyCreate)
   const { success, error } = createPropertyState
 
+  const uploadState = useSelector((state) => state.upload)
+  const { uploading, uploadSuccess, path, message: uploadMessage } = uploadState
+
   useEffect(() => {
-    if (success) {
-      history.push('/provider/property/list')
-      dispatch({ type: PROPERTY_CREATE_RESET })
+    if (!userInfo) {
+      history.push('/login')
+    } else {
+      if (success) {
+        history.push('/provider/property/list')
+        dispatch({ type: PROPERTY_CREATE_RESET })
+      }
+      if (uploadSuccess) {
+        setImages(path)
+        setMessage(uploadMessage)
+        dispatch({ type: UPLOAD_RESET })
+      }
     }
-  }, [success, history, dispatch])
+  }, [success, history, userInfo, dispatch, uploadSuccess, path, uploadMessage])
 
   const uploadFileHandler = async (e) => {
     const files = e.target.files
     const formData = new FormData()
 
-    for (let index = 0; index < files.length; index++) {
-      const file = files[index]
-      formData.append('image', file)
-
-      setUploading(true)
-    }
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      setImages(data.path)
-      console.log(images)
-      setMessage(data.message)
-      setUploading(false)
-    } catch (error) {
-      alert('Error: Only jpg/jpeg/png file formats supported')
-      console.log(error)
-      setUploading(false)
-    }
+    dispatch(upload(files, formData))
   }
 
   const submitHandler = (e) => {

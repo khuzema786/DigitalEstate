@@ -42,6 +42,7 @@ function App() {
             exact
           />
           <Route path="/shortlist" component={Shortlist} exact />
+          <Route path="/search/:keyword" component={Property} exact />
           {/* <Route path="/location/:location" component={HomeScreen} exact />
           <Route
             path="/location/:location/page/:pageNumber"

@@ -1,12 +1,13 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
+import { upload } from '../actions/uploadActions'
 import { listPropertyDetails, updateProperty } from '../actions/propertyActions'
 import { PROPERTY_UPDATE_RESET } from '../constants/propertyConstants'
+import { UPLOAD_RESET } from '../constants/uploadConstants'
 
 const EditProperty = ({ match, history }) => {
   const propertyId = match.params.id
@@ -21,11 +22,16 @@ const EditProperty = ({ match, history }) => {
   const [year, setYear] = useState(0)
   const [bathrooms, setBathrooms] = useState(0)
   const [bedrooms, setBedrooms] = useState(0)
-  const [uploading, setUploading] = useState(false)
   const [message, setMessage] = useState('')
   const [images, setImages] = useState('')
 
   const dispatch = useDispatch()
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  const uploadState = useSelector((state) => state.upload)
+  const { uploading, uploadSuccess, path, message: uploadMessage } = uploadState
 
   const propertyDetails = useSelector((state) => state.propertyDetails)
   const { loading, error, property } = propertyDetails
@@ -38,56 +44,53 @@ const EditProperty = ({ match, history }) => {
   } = updatePropertyState
 
   useEffect(() => {
-    if (success) {
-      dispatch({ type: PROPERTY_UPDATE_RESET })
-      history.push('/provider/property/list')
+    if (!userInfo) {
+      history.push('/login')
     } else {
-      if (!property.name || property._id !== propertyId) {
-        dispatch(listPropertyDetails(propertyId))
+      if (success) {
+        dispatch({ type: UPLOAD_RESET })
+        dispatch({ type: PROPERTY_UPDATE_RESET })
+        history.push('/provider/property/list')
       } else {
-        setName(property.name)
-        setPrice(property.price)
-        setCountry(property.country)
-        setLocation(property.location)
-        setMaintainance(property.maintainance)
-        setSize(property.size)
-        setDescription(property.description)
-        setType(property.type)
-        setYear(property.year)
-        setBathrooms(property.bathrooms)
-        setBedrooms(property.bedrooms)
+        if (!property.name || property._id !== propertyId) {
+          dispatch(listPropertyDetails(propertyId))
+        } else {
+          setName(property.name)
+          setImages(property.images)
+          setPrice(property.price)
+          setCountry(property.country)
+          setLocation(property.location)
+          setMaintainance(property.maintainance)
+          setSize(property.size)
+          setDescription(property.description)
+          setType(property.type)
+          setYear(property.year)
+          setBathrooms(property.bathrooms)
+          setBedrooms(property.bedrooms)
+        }
+        if (uploadSuccess) {
+          setMessage(uploadMessage)
+          setImages(path)
+        }
       }
     }
-  }, [success, history, dispatch, property, propertyId])
+  }, [
+    success,
+    userInfo,
+    history,
+    dispatch,
+    property,
+    propertyId,
+    uploadMessage,
+    uploadSuccess,
+    path,
+  ])
 
   const uploadFileHandler = async (e) => {
     const files = e.target.files
     const formData = new FormData()
 
-    for (let index = 0; index < files.length; index++) {
-      const file = files[index]
-      formData.append('image', file)
-
-      setUploading(true)
-    }
-    try {
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      setImages(data.path)
-      console.log(images)
-      setMessage(data.message)
-      setUploading(false)
-    } catch (error) {
-      alert('Error: Only jpg/jpeg/png file formats supported')
-      console.log(error)
-      setUploading(false)
-    }
+    dispatch(upload(files, formData))
   }
 
   const submitHandler = (e) => {

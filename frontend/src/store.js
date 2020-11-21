@@ -16,6 +16,7 @@ import {
   userDetailsReducer,
   userUpdateProfileReducer,
 } from './reducers/userReducers'
+import { uploadReducer } from './reducers/uploadReducers'
 
 const reducer = combineReducers({
   propertyList: propertyListReducer,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
   allPropertyList: allPropertyListReducer,
   propertyDelete: propertyDeleteReducer,
   propertyUpdate: propertyUpdateReducer,
+  upload: uploadReducer,
 })
 
 const shortlistItemsFromStorage = localStorage.getItem('shortlistItems')

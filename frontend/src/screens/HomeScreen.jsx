@@ -1,5 +1,13 @@
 import React from 'react'
-import { Row, Col, Container, Card, CardDeck, Carousel } from 'react-bootstrap'
+import {
+  Row,
+  Col,
+  Container,
+  Card,
+  CardDeck,
+  Carousel,
+  Image,
+} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Background from '../assets/Background.jpg'
 import City1 from '../assets/city1.jpg'
@@ -14,24 +22,37 @@ import Kolkata from '../assets/kolkata.jpg'
 import Jaipur from '../assets/jaipur.jpg'
 import Dubai from '../assets/dubai.jpg'
 import Sponsors from '../assets/sponsors.jpg'
-const HomeScreen = ({ setclick }) => {
-  const clickHandler = (s) => {
-    setclick(s)
-    console.log(s)
-  }
+import Bott from '../components/Bott'
+
+const homeStyle = {
+  // carousel: {
+  //   height: '70vh',
+  // },
+  image: {
+    width: '100vw',
+    height: '70vh',
+    backgroundImage:
+      'url("https://www.azcorealestate.ae/public/Uploads/imagetable/7e2d5f1cbef8035e7d36340282ecff03/3fgoV4oUYlQVbt1hyJxiMdc6UVcyJOFPrIQ6o1GO.jpeg")',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '50% 50%',
+  },
+}
+const HomeScreen = () => {
   return (
     <>
       <Container className="p-5">
         <Row>
-          <Col xs={4} md={6} className="pt-5">
+          <Col sm={12} md={6} className="pt-5">
             <span>Digital Estate is</span>
             <h2>The real estate market</h2>
             <span>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </span>
           </Col>
-          <Col xs={4} md={4}>
-            <img
+          <Col md={4}>
+            <Image
+              className="image-home"
               src={Background}
               alt="background image"
               style={{ width: '40rem' }}
@@ -157,13 +178,20 @@ const HomeScreen = ({ setclick }) => {
           </Card>
         </CardDeck>
         <Carousel className="pt-4" md={6}>
-          <Carousel.Item>
+          <Carousel.Item
+            style={{
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: '50% 50%',
+            }}
+          >
             <img
               className="d-block w-100"
               src={Kota}
               alt="First slide"
-              style={{ width: '10rem', height: '20rem' }}
+              // style={{ width: '10rem', height: '20rem' }}
             />
+
             <Carousel.Caption>
               <h3>Kota</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -174,7 +202,12 @@ const HomeScreen = ({ setclick }) => {
               className="d-block w-100"
               src={Jaipur}
               alt="Third slide"
-              style={{ width: '10rem', height: '20rem' }}
+              // style={{ width: '10rem', height: '20rem' }}
+              style={{
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: '50% 50%',
+              }}
             />
 
             <Carousel.Caption>
@@ -187,7 +220,12 @@ const HomeScreen = ({ setclick }) => {
               className="d-block w-100"
               src={Dubai}
               alt="Third slide"
-              style={{ width: '10rem', height: '20rem' }}
+              // style={{ width: '10rem', height: '20rem' }}
+              style={{
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: '50% 50%',
+              }}
             />
 
             <Carousel.Caption>
@@ -202,7 +240,12 @@ const HomeScreen = ({ setclick }) => {
               className="d-block w-100"
               src={Kolkata}
               alt="Third slide"
-              style={{ width: '10rem', height: '20rem' }}
+              // style={{ width: '10rem', height: '20rem' }}
+              style={{
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: '50% 50%',
+              }}
             />
 
             <Carousel.Caption>
@@ -219,6 +262,7 @@ const HomeScreen = ({ setclick }) => {
           <img src={Sponsors} alt="sponsors" />
         </Row>
       </Container>
+      <Bott />
     </>
   )
 }
