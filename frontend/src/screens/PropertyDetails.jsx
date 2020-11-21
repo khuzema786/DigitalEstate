@@ -34,9 +34,6 @@ const PropertyDetails = ({ match }) => {
   const propertyDetails = useSelector((state) => state.propertyDetails)
   const { loading, error, property } = propertyDetails
 
-  const shortList = useSelector((state) => state.shortlist)
-  const { loading: shortListSuccess } = shortList
-
   console.log(property)
   useEffect(() => {
     dispatch(listPropertyDetails(propertyId))

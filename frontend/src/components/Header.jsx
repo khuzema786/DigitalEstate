@@ -31,9 +31,9 @@ const Header = () => {
             <Nav.Link href="#pricing">Sell</Nav.Link>
             {userInfo && userInfo.isProvider && (
               <LinkContainer to="/provider/property">
-              <Button className="mx-4" variant="outline-secondary">
-                View Properties
-              </Button>
+                <Button className="mx-4" variant="outline-secondary">
+                  Add New Property
+                </Button>
               </LinkContainer>
             )}
             <Nav.Link href="#features">
@@ -44,6 +44,13 @@ const Header = () => {
             </Nav.Link>
             {userInfo ? (
               <NavDropdown title={userInfo.name} id="username">
+                {userInfo.isProvider && (
+                  <>
+                    <LinkContainer to="/provider/property/list">
+                      <NavDropdown.Item>View Property</NavDropdown.Item>
+                    </LinkContainer>
+                  </>
+                )}
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>Profile</NavDropdown.Item>
                 </LinkContainer>
