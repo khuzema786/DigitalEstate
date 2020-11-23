@@ -16,23 +16,23 @@ import { listProperty } from '../actions/propertyActions'
 import { Route } from 'react-router-dom'
 import SearchBox from '../components/SearchBox'
 import Bott from '../components/Bott'
-const location = {
-  1: 'Pune',
-  2: 'Kota',
-  3: 'Kolkata',
-  4: 'Mumbai',
-  5: 'Jaipur',
-}
-const option = {
-  1: 'Buy',
-  2: 'Rent',
-  3: 'Sell',
-}
+// const location = {
+//   1: 'Pune',
+//   2: 'Kota',
+//   3: 'Kolkata',
+//   4: 'Mumbai',
+//   5: 'Jaipur',
+// }
+// const option = {
+//   1: 'Buy',
+//   2: 'Rent',
+//   3: 'Sell',
+// }
 const Property = ({ match }) => {
   const keyword = match.params.keyword
-  const [selector, setSelector] = useState(0)
-  const [optioner, setOptioner] = useState(0)
-  const [filterProperty, setFilterProperty] = useState([])
+  // const [selector, setSelector] = useState(0)
+  // const [optioner, setOptioner] = useState(0)
+  // const [filterProperty, setFilterProperty] = useState([])
 
   const locationKey = match.params.location
   const optionKey = match.params.option
@@ -43,35 +43,36 @@ const Property = ({ match }) => {
 
   useEffect(() => {
     //is used for a request for the products to the backend
-    const properties = async () => await dispatch(listProperty(keyword))
-    properties()
-    propertyFilter()
+    // const properties = async () => await dispatch(listProperty(keyword,locationKey,optionKey))
+    dispatch(listProperty(keyword, locationKey, optionKey))
+    // properties()
+    // propertyFilter()
 
-    if (locationKey) {
-      setSelector(locationKey)
-    }
-    if (optionKey) {
-      setOptioner(optionKey)
-    }
-  }, [dispatch, optionKey, optioner, selector, locationKey, keyword])
+    // if (locationKey) {
+    //   setSelector(locationKey)
+    // }
+    // if (optionKey) {
+    //   setOptioner(optionKey)
+    // }
+  }, [dispatch, optionKey, locationKey, keyword])
 
-  function propertyFilter() {
-    setFilterProperty(
-      property.filter((p) => {
-        console.log('yooooo ladkiiii')
-        if (locationKey) {
-          if (selector === 0) return true
-          else if (p.location === location[selector]) return true
-          else return false
-        }
-        if (optionKey) {
-          if (p.option.toLowerCase() === option[optioner].toLowerCase())
-            return true
-          else return false
-        } else return false
-      }),
-    )
-  }
+  // function propertyFilter() {
+  //   setFilterProperty(
+  //     property.filter((p) => {
+  //       console.log('yooooo ladkiiii')
+  //       if (locationKey) {
+  //         if (selector === 0) return true
+  //         else if (p.location === location[selector]) return true
+  //         else return false
+  //       }
+  //       if (optionKey) {
+  //         if (p.option.toLowerCase() === option[optioner].toLowerCase())
+  //           return true
+  //         else return false
+  //       } else return false
+  //     }),
+  //   )
+  // }
 
   return (
     <>
@@ -98,13 +99,15 @@ const Property = ({ match }) => {
             </span>
 
             <Row>
-              <Category setSelector={setSelector} className="my-4" />
+              <Link to="/location/${locationkey}" />
+              <Category className="my-4" />
+              {/* <Category setSelector={setSelector} className="my-4" /> */}
               <span className="mt-2" variant="primary">
                 25678 Results
               </span>
             </Row>
             <Row>
-              {filterProperty.map((pro) => (
+              {property.map((pro) => (
                 <Col sm={12} md={8} lg={6} xl={4} className="py-3">
                   <Card>
                     <Badge variant="info" className="p-2">

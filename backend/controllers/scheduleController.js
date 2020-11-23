@@ -10,25 +10,27 @@ import mongoose from 'mongoose'
 const createSchedule = asyncHandler(async (req, res) => {
   const { property, date } = req.body
 
+  const user = await User.findById(req.user._id)
+
+  if (user && user.isProvider) {
+    res.status(404)
+    throw new Error('Provider cannot schedule a property')
+  }
+
   const { _id } = await Schedule.create({
     property,
     date,
     user: req.user._id,
   })
 
-  console.log(typeof mongoose.Types.ObjectId(_id))
-
-  const user = await User.findById(req.user._id)
   const foundProperty = await Property.findById(req.params.id)
 
   if (foundProperty) {
-    console.log(foundProperty)
     foundProperty.schedule.push(_id)
     await foundProperty.save()
   }
 
   if (user) {
-    console.log(user)
     user.schedule = [...user.schedule, _id]
     await user.save()
   }
@@ -41,33 +43,29 @@ const createSchedule = asyncHandler(async (req, res) => {
 // @route   GET /api/schedule
 // @access  Private
 const getSchedule = asyncHandler(async (req, res) => {
-  const { property, date } = req.body
+  const schedules = []
+  const userProperty = await Property.find({ user: req.user._id }) // Provider user property array
+  console.log(userProperty)
+  if (userProperty) {
+    userProperty.map(async (property) => {
+      if (property.schedule) {
+        const schedule = await Schedule.findById(property.schedule)
+        console.log(schedule)
+        const scheduledUser = await User.findById(schedule.user)
+        console.log(scheduledUser)
 
-  const { _id } = await Schedule.create({
-    property,
-    date,
-    user: req.user._id,
-  })
-
-  console.log(typeof mongoose.Types.ObjectId(_id))
-
-  const user = await User.findById(req.user._id)
-  const foundProperty = await Property.findById(req.params.id)
-
-  if (foundProperty) {
-    console.log(foundProperty)
-    foundProperty.schedule.push(_id)
-    await foundProperty.save()
+        schedules.push({
+          date: schedule.date,
+          property: property,
+          bookedBy: scheduledUser,
+        })
+      }
+    })
   }
-
-  if (user) {
-    console.log(user)
-    user.schedule = [...user.schedule, _id]
-    await user.save()
-  }
+  console.log(schedules)
 
   res.status(200)
-  res.json('Scheduled')
+  res.json(schedules)
 })
 
-export { createSchedule }
+export { createSchedule, getSchedule }

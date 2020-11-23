@@ -21,11 +21,17 @@ import {
 } from '../constants/propertyConstants'
 import { logout } from './userActions'
 
-export const listProperty = (keyword = '') => async (dispatch) => {
+export const listProperty = (
+  keyword = '',
+  location = '',
+  option = '',
+) => async (dispatch) => {
   try {
     dispatch({ type: PROPERTY_LIST_REQUEST })
 
-    const { data } = await axios.get(`/api/property?keyword=${keyword}`)
+    const { data } = await axios.get(
+      `/api/property?keyword=${keyword}&location=${location}&option=${option}`,
+    )
 
     dispatch({
       type: PROPERTY_LIST_SUCCESS,

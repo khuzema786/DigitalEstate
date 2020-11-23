@@ -43,19 +43,21 @@ const HomeScreen = () => {
     <>
       <Container className="p-5">
         <Row>
-          <Col sm={12} md={6} className="pt-5">
-            <span>Digital Estate is</span>
-            <h2>The real estate market</h2>
+          <Col xl={6} className="pt-5">
+            <span style={{ fontSize: '20px', fontWeight: '400' }}>
+              Digital Estate is
+            </span>
+            <h1 style={{ fontWeight: '900' }}>The real estate market</h1>
             <span>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </span>
           </Col>
-          <Col md={4}>
+          <Col xl={6}>
             <Image
               className="image-home"
               src={Background}
               alt="background image"
-              style={{ width: '40rem' }}
+              fluid
             />
           </Col>
         </Row>
@@ -71,7 +73,7 @@ const HomeScreen = () => {
         <Row className="pt-3">
           <Col xs={6} md={4}>
             <Link to={`/property/location/${1}`}>
-              <img
+              <Image
                 src={City1}
                 alt="city1"
                 style={{ width: '319px', height: '264px' }}
@@ -80,7 +82,7 @@ const HomeScreen = () => {
           </Col>
           <Col xs={6} md={4}>
             <Link to={`/property/location/${2}`}>
-              <img
+              <Image
                 src={City2}
                 alt="city2"
                 style={{ width: '319px', height: '264px' }}
@@ -89,7 +91,7 @@ const HomeScreen = () => {
           </Col>
           <Col xs={6} md={4}>
             <Link to={`/property/location/${3}`}>
-              <img
+              <Image
                 src={City3}
                 alt="city3"
                 style={{ width: '319px', height: '264px' }}
@@ -100,7 +102,7 @@ const HomeScreen = () => {
         <Row className="pt-3">
           <Col xs={6} md={6}>
             <Link to={`/property/location/${4}`}>
-              <img
+              <Image
                 src={City4}
                 alt="city1"
                 style={{ width: '512px', height: '300px' }}
@@ -109,7 +111,7 @@ const HomeScreen = () => {
           </Col>
           <Col xs={6} md={6}>
             <Link to={`/property/location/${5}`}>
-              <img
+              <Image
                 src={City5}
                 alt="city3"
                 style={{ width: '512px', height: '300px' }}
@@ -120,7 +122,7 @@ const HomeScreen = () => {
         <Row className="pt-3">
           <Col xs={6} md={6}>
             <Link to={`/property/location/${3}`}>
-              <img
+              <Image
                 src={City6}
                 alt="city1"
                 style={{ width: '512px', height: '300px' }}
@@ -129,7 +131,7 @@ const HomeScreen = () => {
           </Col>
           <Col xs={6} md={6}>
             <Link to={`/property/location/${2}`}>
-              <img
+              <Image
                 src={City7}
                 alt="city2"
                 style={{ width: '512px', height: '300px' }}

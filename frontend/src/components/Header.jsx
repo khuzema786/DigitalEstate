@@ -43,12 +43,16 @@ const Header = () => {
                 </Button>
               </LinkContainer>
             )}
-            <Nav.Link href="#features">
-              <BsEnvelopeFill />
-            </Nav.Link>
-            <Nav.Link href="#features">
-              <BsBellFill />
-            </Nav.Link>
+            <LinkContainer to="/notification">
+              <Nav.Link>
+                <BsEnvelopeFill />
+              </Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/notification">
+              <Nav.Link href="#features">
+                <BsBellFill />
+              </Nav.Link>
+            </LinkContainer>
             {userInfo ? (
               <NavDropdown title={userInfo.name} id="username">
                 {userInfo.isProvider && (

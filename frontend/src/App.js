@@ -26,14 +26,14 @@ function App() {
           <Route path="/profile" component={Profile} exact />
           <Route path="/notification" component={Notification} exact />
           <Route path="/property" component={Property} exact />
-          <Route
+          {/* <Route
             path="/property/location/:location"
             component={Property}
             exact
-          />
+          /> */}
           <Route path="/property/:id" component={PropertyDetails} exact />
           <Route path="/provider/property" component={AddProperty} exact />
-          <Route path="/property/option/:option" component={Property} exact />
+          {/* <Route path="/property/option/:option" component={Property} exact /> */}
           <Route
             path="/provider/property/list"
             component={PropertyList}
@@ -53,6 +53,7 @@ function App() {
             exact
           /> */}
           <Route path="/" component={HomeScreen} exact />
+          <Route path="/location/:location" component={Property} exact />
         </Switch>
       </Suspense>
       <Footer />

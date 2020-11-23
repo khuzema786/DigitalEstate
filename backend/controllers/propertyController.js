@@ -5,8 +5,8 @@ import Property from '../models/propertyModel.js'
 // @route   GET /api/property
 // @access  Public
 const getProperty = asyncHandler(async (req, res) => {
-  const pageSize = 20
-  const page = Number(req.query.pageNumber) || 1
+  // const pageSize = 20
+  // const page = Number(req.query.pageNumber) || 1
 
   const keyword = req.query.keyword
     ? {
@@ -17,11 +17,18 @@ const getProperty = asyncHandler(async (req, res) => {
       }
     : {}
 
-  const count = await Property.countDocuments({ ...keyword })
-  const properties = await Property.find({ ...keyword })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1))
-  res.json({ properties, page, pages: Math.ceil(count / pageSize) })
+  const location = req.query.location
+  const option = req.query.option
+  const count = await Property.countDocuments({
+    ...keyword,
+    ...location,
+    ...option,
+  })
+  const properties = await Property.find({ ...keyword, ...location, ...option })
+  // .limit(pageSize)
+  // .skip(pageSize * (page - 1))
+  // res.json({ properties, page, pages: Math.ceil(count / pageSize) })
+  res.json({ properties })
 })
 
 // @desc    Fetch single property
