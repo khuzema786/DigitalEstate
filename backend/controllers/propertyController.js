@@ -63,6 +63,7 @@ const getProviderProperty = asyncHandler(async (req, res) => {
 // @route   POST /api/property
 // @access  Private/Property
 const createProperty = asyncHandler(async (req, res) => {
+  console.log(req.body)
   await Property.create({
     ...req.body,
     user: req.user._id,

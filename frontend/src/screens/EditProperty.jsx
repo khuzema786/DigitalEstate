@@ -169,16 +169,6 @@ const EditProperty = ({ match, history }) => {
               {uploading && <Loader />}
             </Form.Group>
 
-            <Form.Group controlId="country">
-              <Form.Label>Country</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
             <Form.Group controlId="location">
               <Form.Label>Location</Form.Label>
               <Form.Control
@@ -270,11 +260,15 @@ const EditProperty = ({ match, history }) => {
             <Form.Group controlId="type">
               <Form.Label>Type</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter type"
+                as="select"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-              ></Form.Control>
+              >
+                <option value="Houses">Houses</option>
+                <option value="Apartments">Apartments</option>
+                <option value="Offices">Offices</option>
+                <option value="Land">Land</option>
+              </Form.Control>
             </Form.Group>
 
             <Form.Group controlId="year">

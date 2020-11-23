@@ -13,13 +13,13 @@ import { UPLOAD_RESET } from '../constants/uploadConstants'
 const AddProperty = ({ history }) => {
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
-  const [country, setCountry] = useState('')
+  const [country, setCountry] = useState('Pune')
   const [location, setLocation] = useState('')
   const [maintainance, setMaintainance] = useState(0)
   const [size, setSize] = useState(0)
   const [description, setDescription] = useState('')
-  const [type, setType] = useState('')
-  const [option, setOption] = useState('')
+  const [type, setType] = useState('Houses')
+  const [option, setOption] = useState('Buy')
   const [year, setYear] = useState(0)
   const [bathrooms, setBathrooms] = useState(0)
   const [bedrooms, setBedrooms] = useState(0)
@@ -126,16 +126,6 @@ const AddProperty = ({ history }) => {
             {uploading && <Loader />}
           </Form.Group>
 
-          <Form.Group controlId="country">
-            <Form.Label>Country</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter country"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
           <Form.Group controlId="location">
             <Form.Label>Location</Form.Label>
             <Form.Control
@@ -227,11 +217,15 @@ const AddProperty = ({ history }) => {
           <Form.Group controlId="type">
             <Form.Label>Type</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter type"
+              as="select"
               value={type}
               onChange={(e) => setType(e.target.value)}
-            ></Form.Control>
+            >
+              <option value="Houses">Houses</option>
+              <option value="Apartments">Apartments</option>
+              <option value="Offices">Offices</option>
+              <option value="Land">Land</option>
+            </Form.Control>
           </Form.Group>
 
           <Form.Group controlId="year">

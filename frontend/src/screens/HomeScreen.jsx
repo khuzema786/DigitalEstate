@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { ReactComponent as Sponsors } from '../assets/sponsors.svg'
 import Background from '../assets/Background.jpg'
 import City1 from '../assets/city1.jpg'
 import City2 from '../assets/city2.jpg'
@@ -21,7 +22,6 @@ import Kota from '../assets/kota.jpg'
 import Kolkata from '../assets/kolkata.jpg'
 import Jaipur from '../assets/jaipur.jpg'
 import Dubai from '../assets/dubai.jpg'
-import Sponsors from '../assets/sponsors.jpg'
 import Bott from '../components/Bott'
 
 const homeStyle = {
@@ -52,7 +52,7 @@ const HomeScreen = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </span>
           </Col>
-          <Col xl={6}>
+          <Col xl={6} className="pt-2">
             <Image
               className="image-home"
               src={Background}
@@ -61,40 +61,41 @@ const HomeScreen = () => {
             />
           </Col>
         </Row>
-      </Container>
-      <Container>
-        <Row>
+        <Row className="my-5">
           <Col className="text-center pt-4">
-            <span style={{ fontSize: '25px' }}>
+            <span style={{ fontSize: '30px' }}>
               <strong>Explore our neighborhoods</strong>
             </span>
           </Col>
         </Row>
         <Row className="pt-3">
-          <Col xs={6} md={4}>
+          <Col xs={4}>
             <Link to={`/property/location/${1}`}>
               <Image
                 src={City1}
                 alt="city1"
-                style={{ width: '319px', height: '264px' }}
+                // style={{ width: '319px', height: '264px' }}
+                fluid
               />
             </Link>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={4}>
             <Link to={`/property/location/${2}`}>
               <Image
                 src={City2}
                 alt="city2"
-                style={{ width: '319px', height: '264px' }}
+                // style={{ width: '319px', height: '264px' }}
+                fluid
               />
             </Link>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={4}>
             <Link to={`/property/location/${3}`}>
               <Image
                 src={City3}
                 alt="city3"
-                style={{ width: '319px', height: '264px' }}
+                // style={{ width: '319px', height: '264px' }}
+                fluid
               />
             </Link>
           </Col>
@@ -105,7 +106,8 @@ const HomeScreen = () => {
               <Image
                 src={City4}
                 alt="city1"
-                style={{ width: '512px', height: '300px' }}
+                // style={{ width: '512px', height: '300px' }}
+                fluid
               />
             </Link>
           </Col>
@@ -114,33 +116,34 @@ const HomeScreen = () => {
               <Image
                 src={City5}
                 alt="city3"
-                style={{ width: '512px', height: '300px' }}
+                // style={{ width: '512px', height: '300px' }}
+                fluid
               />
             </Link>
           </Col>
         </Row>
         <Row className="pt-3">
-          <Col xs={6} md={6}>
+          <Col xs={6}>
             <Link to={`/property/location/${3}`}>
               <Image
                 src={City6}
                 alt="city1"
-                style={{ width: '512px', height: '300px' }}
+                // style={{ width: '512px', height: '300px' }}
+                fluid
               />
             </Link>
           </Col>
-          <Col xs={6} md={6}>
+          <Col xs={6}>
             <Link to={`/property/location/${2}`}>
               <Image
                 src={City7}
                 alt="city2"
-                style={{ width: '512px', height: '300px' }}
+                // style={{ width: '512px', height: '300px' }}
+                fluid
               />
             </Link>
           </Col>
         </Row>
-      </Container>
-      <Container>
         <Row className="pt-5">
           <Col>
             <span style={{ fontSize: '20px' }}>
@@ -238,16 +241,18 @@ const HomeScreen = () => {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img
+            <Image
               className="d-block w-100"
               src={Kolkata}
               alt="Third slide"
               // style={{ width: '10rem', height: '20rem' }}
               style={{
+                height: '50vh',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: '50% 50%',
               }}
+              fluid
             />
 
             <Carousel.Caption>
@@ -258,10 +263,8 @@ const HomeScreen = () => {
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-      </Container>
-      <Container>
         <Row className="pt-4">
-          <img src={Sponsors} alt="sponsors" />
+          <Sponsors />
         </Row>
       </Container>
       <Bott />

@@ -45,23 +45,27 @@ const createSchedule = asyncHandler(async (req, res) => {
 const getSchedule = asyncHandler(async (req, res) => {
   const schedules = []
   const userProperty = await Property.find({ user: req.user._id }) // Provider user property array
-  console.log(userProperty)
+  console.log('userProperty', userProperty)
   if (userProperty) {
     userProperty.map(async (property) => {
-      if (property.schedule) {
-        const schedule = await Schedule.findById(property.schedule)
-        console.log(schedule)
-        const scheduledUser = await User.findById(schedule.user)
-        console.log(scheduledUser)
+      if (property.schedule.length !== 0) {
+        property.schedule.map(async (sched) => {
+          const schedule = await Schedule.findById(sched)
+          console.log('schedule', schedule)
+          const scheduledUser = await User.findById(schedule.user)
+          console.log('scheduledUser', scheduledUser)
+          schedules.push('123')
 
-        schedules.push({
-          date: schedule.date,
-          property: property,
-          bookedBy: scheduledUser,
+          // schedules.push({
+          //   date: schedule.date,
+          //   property: property,
+          //   bookedBy: scheduledUser,
+          // })
         })
       }
     })
   }
+
   console.log(schedules)
 
   res.status(200)
