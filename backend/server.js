@@ -7,6 +7,7 @@ import connectDB from './config/db.js'
 
 import propertyRoutes from './routes/propertyRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import scheduleRoutes from './routes/scheduleRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 
 dotenv.config()
@@ -27,6 +28,7 @@ app.use(express.json())
 
 app.use('/api/property', propertyRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/schedule', scheduleRoutes)
 app.use('/api/upload', uploadRoutes)
 
 const __dirname = path.resolve()

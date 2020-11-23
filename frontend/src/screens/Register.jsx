@@ -23,6 +23,12 @@ const Register = ({ history }) => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
+  const [radioValue, setRadioValue] = useState(true)
+
+  const radios = [
+    { name: 'provider', value: true },
+    { name: 'buyer', value: false },
+  ]
 
   const dispatch = useDispatch()
 
@@ -43,12 +49,6 @@ const Register = ({ history }) => {
       dispatch(register(name, email, password, radioValue))
     }
   }
-  const [radioValue, setRadioValue] = useState('true')
-
-  const radios = [
-    { name: 'provider', value: 'true' },
-    { name: 'buyer', value: 'false' },
-  ]
 
   return (
     <>

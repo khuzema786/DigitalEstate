@@ -38,7 +38,7 @@ const getPropertyById = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    get all provider product
+// @desc    get all provider property
 // @route   get /api/property/list
 // @access  Private/Provider
 const getProviderProperty = asyncHandler(async (req, res) => {
@@ -75,6 +75,7 @@ const updateProperty = asyncHandler(async (req, res) => {
     country,
     description,
     location,
+    option,
     bathrooms,
     bedrooms,
     maintainance,
@@ -92,6 +93,7 @@ const updateProperty = asyncHandler(async (req, res) => {
     property.country = country
     property.description = description
     property.location = location
+    property.option = option
     property.bathrooms = bathrooms
     property.bedrooms = bedrooms
     property.maintainance = maintainance

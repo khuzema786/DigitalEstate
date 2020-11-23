@@ -12,6 +12,7 @@ const Shortlist = lazy(() => import('./screens/Shortlist'))
 const AddProperty = lazy(() => import('./screens/AddProperty'))
 const PropertyList = lazy(() => import('./screens/PropertyList'))
 const EditProperty = lazy(() => import('./screens/EditProperty'))
+const Notification = lazy(() => import('./screens/Notification'))
 const Profile = lazy(() => import('./screens/Profile'))
 
 function App() {
@@ -23,9 +24,16 @@ function App() {
           <Route path="/register" component={Register} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/profile" component={Profile} exact />
-          <Route path="/property/:id" component={PropertyDetails} exact />
+          <Route path="/notification" component={Notification} exact />
           <Route path="/property" component={Property} exact />
+          <Route
+            path="/property/location/:location"
+            component={Property}
+            exact
+          />
+          <Route path="/property/:id" component={PropertyDetails} exact />
           <Route path="/provider/property" component={AddProperty} exact />
+          <Route path="/property/option/:option" component={Property} exact />
           <Route
             path="/provider/property/list"
             component={PropertyList}
@@ -34,11 +42,6 @@ function App() {
           <Route
             path="/provider/property/:id/edit"
             component={EditProperty}
-            exact
-          />
-          <Route
-            path="/property/location/:location"
-            component={Property}
             exact
           />
           <Route path="/shortlist" component={Shortlist} exact />

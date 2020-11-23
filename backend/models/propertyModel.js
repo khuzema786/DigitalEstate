@@ -2,6 +2,13 @@ import mongoose from 'mongoose'
 
 const propertySchema = mongoose.Schema(
   {
+    schedule: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Schedule',
+      },
+    ],
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

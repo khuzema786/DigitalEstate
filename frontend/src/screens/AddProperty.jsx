@@ -19,6 +19,7 @@ const AddProperty = ({ history }) => {
   const [size, setSize] = useState(0)
   const [description, setDescription] = useState('')
   const [type, setType] = useState('')
+  const [option, setOption] = useState('')
   const [year, setYear] = useState(0)
   const [bathrooms, setBathrooms] = useState(0)
   const [bedrooms, setBedrooms] = useState(0)
@@ -71,6 +72,7 @@ const AddProperty = ({ history }) => {
         description,
         location,
         bathrooms,
+        option,
         bedrooms,
         maintainance,
         size,
@@ -176,6 +178,19 @@ const AddProperty = ({ history }) => {
               <option value="Kolkata">Kolkata</option>
               <option value="Mumbai">Mumbai</option>
               <option value="Jaipur">Jaipur</option>
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="option">
+            <Form.Label>Options: Buy/Sell/Rent</Form.Label>
+            <Form.Control
+              as="select"
+              value={option}
+              onChange={(e) => setOption(e.target.value)}
+            >
+              <option value="Buy">Buy</option>
+              <option value="Sell">Sell</option>
+              <option value="Rent">Rent</option>
             </Form.Control>
           </Form.Group>
 

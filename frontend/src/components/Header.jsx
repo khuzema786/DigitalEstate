@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Navbar, Nav, Button, NavDropdown } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
@@ -26,9 +27,15 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto align-items-center">
-            <Nav.Link href="#home">Buy</Nav.Link>
-            <Nav.Link href="#features">Rent</Nav.Link>
-            <Nav.Link href="#pricing">Sell</Nav.Link>
+            <LinkContainer to="/property/option/1">
+              <Nav.Link>Buy</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/property/option/2">
+              <Nav.Link>Rent</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/property/option/3">
+              <Nav.Link>Sell</Nav.Link>
+            </LinkContainer>
             {userInfo && userInfo.isProvider && (
               <LinkContainer to="/provider/property">
                 <Button className="mx-4" variant="outline-secondary">

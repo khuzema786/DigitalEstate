@@ -13,6 +13,7 @@ const property = [
     price: 1576780.99,
     maintainance: 6000,
     year: 1980,
+    option: 'Buy',
   },
   {
     name: 'Rajgarh Apartments',
@@ -28,6 +29,7 @@ const property = [
     price: 1675890.99,
     maintainance: 6000,
     year: 1980,
+    option: 'Sell',
   },
   {
     name: 'Shilpa Sonawani',
@@ -43,6 +45,7 @@ const property = [
     price: 1876543.99,
     maintainance: 6000,
     year: 1980,
+    option: 'Rent',
   },
   {
     name: 'Agarwal Apartments',
@@ -58,6 +61,7 @@ const property = [
     price: 1874623.99,
     maintainance: 6000,
     year: 1980,
+    option: 'Buy',
   },
   {
     name: 'Mandal Heights',
@@ -73,6 +77,7 @@ const property = [
     price: 198763.99,
     maintainance: 6000,
     year: 1980,
+    option: 'Rent',
   },
 ]
 

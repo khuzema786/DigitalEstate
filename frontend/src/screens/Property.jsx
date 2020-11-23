@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Card, Container } from 'react-bootstrap'
+import { Row, Col, Card, Container, Badge } from 'react-bootstrap'
 import Category from '../components/Category'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Chatbottt from '../components/Bott'
+import Header from '../components/Header'
 import { ReactComponent as Bathroom } from '../assets/bathroom.svg'
 import { ReactComponent as Bedroom } from '../assets/bedroom.svg'
 import { ReactComponent as House } from '../assets/house.svg'
@@ -22,27 +23,56 @@ const location = {
   4: 'Mumbai',
   5: 'Jaipur',
 }
+const option = {
+  1: 'Buy',
+  2: 'Rent',
+  3: 'Sell',
+}
 const Property = ({ match }) => {
   const keyword = match.params.keyword
   const [selector, setSelector] = useState(0)
+  const [optioner, setOptioner] = useState(0)
+  const [filterProperty, setFilterProperty] = useState([])
+
   const locationKey = match.params.location
+  const optionKey = match.params.option
 
   const dispatch = useDispatch()
   const propertyList = useSelector((state) => state.propertyList)
   const { loading, error, property } = propertyList
-  const filterProperty = property.filter((p) => {
-    if (selector === 0) return true
-    else if (p.location === location[selector]) return true
-    else return false
-  })
-  console.log(property)
+
   useEffect(() => {
+    //is used for a request for the products to the backend
+    const properties = async () => await dispatch(listProperty(keyword))
+    properties()
+    propertyFilter()
+
     if (locationKey) {
       setSelector(locationKey)
     }
-    //is used for a request for the products to the backend
-    dispatch(listProperty(keyword))
-  }, [dispatch, locationKey, keyword])
+    if (optionKey) {
+      setOptioner(optionKey)
+    }
+  }, [dispatch, optionKey, optioner, selector, locationKey, keyword])
+
+  function propertyFilter() {
+    setFilterProperty(
+      property.filter((p) => {
+        console.log('yooooo ladkiiii')
+        if (locationKey) {
+          if (selector === 0) return true
+          else if (p.location === location[selector]) return true
+          else return false
+        }
+        if (optionKey) {
+          if (p.option.toLowerCase() === option[optioner].toLowerCase())
+            return true
+          else return false
+        } else return false
+      }),
+    )
+  }
+
   return (
     <>
       {!keyword ? (
@@ -77,6 +107,9 @@ const Property = ({ match }) => {
               {filterProperty.map((pro) => (
                 <Col sm={12} md={8} lg={6} xl={4} className="py-3">
                   <Card>
+                    <Badge variant="info" className="p-2">
+                      {pro.option}
+                    </Badge>
                     <Link to={`/property/${pro._id}`}>
                       <MyCarousel />
                     </Link>

@@ -19,6 +19,7 @@ const EditProperty = ({ match, history }) => {
   const [size, setSize] = useState(0)
   const [description, setDescription] = useState('')
   const [type, setType] = useState('')
+  const [option, setOption] = useState('')
   const [year, setYear] = useState(0)
   const [bathrooms, setBathrooms] = useState(0)
   const [bedrooms, setBedrooms] = useState(0)
@@ -60,6 +61,7 @@ const EditProperty = ({ match, history }) => {
           setPrice(property.price)
           setCountry(property.country)
           setLocation(property.location)
+          setOption(property.option)
           setMaintainance(property.maintainance)
           setSize(property.size)
           setDescription(property.description)
@@ -104,6 +106,7 @@ const EditProperty = ({ match, history }) => {
         images,
         country,
         description,
+        option,
         location,
         bathrooms,
         bedrooms,
@@ -218,6 +221,19 @@ const EditProperty = ({ match, history }) => {
                 <option value="Kolkata">Kolkata</option>
                 <option value="Mumbai">Mumbai</option>
                 <option value="Jaipur">Jaipur</option>
+              </Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="option">
+              <Form.Label>Options: Buy/Sell/Rent</Form.Label>
+              <Form.Control
+                as="select"
+                value={option}
+                onChange={(e) => setOption(e.target.value)}
+              >
+                <option value="Buy">Buy</option>
+                <option value="Sell">Sell</option>
+                <option value="Rent">Rent</option>
               </Form.Control>
             </Form.Group>
 

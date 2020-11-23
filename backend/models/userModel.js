@@ -8,6 +8,13 @@ const documentSchema = mongoose.Schema({
 
 const userSchema = mongoose.Schema(
   {
+    schedule: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Schedule',
+      },
+    ],
     name: {
       type: String,
       required: true,

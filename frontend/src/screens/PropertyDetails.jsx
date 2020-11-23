@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Carousel, Col, Button, ListGroup, Card, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { listPropertyDetails } from '../actions/propertyActions'
+import { createSchedule } from '../actions/scheduleActions'
 import { ReactComponent as Bathroom } from '../assets/bathroom.svg'
 import { ReactComponent as Bedroom } from '../assets/bedroom.svg'
 import { ReactComponent as House } from '../assets/house.svg'
 import { ReactComponent as Squarefit } from '../assets/squarefit.svg'
 import { ReactComponent as MediaIcons } from '../assets/mediaIcons.svg'
 import { addToShortlist } from '../actions/shortlistActions'
+import DateTimePicker from 'react-datetime-picker'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
@@ -28,8 +30,9 @@ const propertyStyle = {
 
 const PropertyDetails = ({ match }) => {
   const dispatch = useDispatch()
+  const [value, onChange] = useState(new Date())
   const propertyId = match.params.id
-  console.log(propertyId)
+  console.log(value)
 
   const propertyDetails = useSelector((state) => state.propertyDetails)
   const { loading, error, property } = propertyDetails
@@ -37,10 +40,17 @@ const PropertyDetails = ({ match }) => {
   const shortList = useSelector((state) => state.shortlist)
   const { success } = shortList
 
+  const propertySchedule = useSelector((state) => state.schedule)
+  const { error: scheduleError, success: scheduleSuccess } = propertySchedule
+
   console.log(property)
   useEffect(() => {
     dispatch(listPropertyDetails(propertyId))
   }, [dispatch, propertyId])
+
+  const scheduleHandler = () => {
+    dispatch(createSchedule({ property: propertyId, date: value }))
+  }
 
   return (
     <>
@@ -125,6 +135,9 @@ const PropertyDetails = ({ match }) => {
                         </Col>
                       ))}
                     </Row>
+                    <Row className="align-items-center my-3 justify-content-center">
+                      <DateTimePicker onChange={onChange} value={value} />
+                    </Row>
                     <Row className="align-items-center justify-content-center">
                       <Button
                         style={{
@@ -135,6 +148,9 @@ const PropertyDetails = ({ match }) => {
                         className="my-2"
                         type="submit"
                         variant="primary"
+                        onClick={() => {
+                          scheduleHandler()
+                        }}
                       >
                         Schedule Tour
                       </Button>
@@ -155,6 +171,17 @@ const PropertyDetails = ({ match }) => {
                       </Button>
                     </Row>
                   </ListGroup.Item>
+                  {scheduleSuccess && (
+                    <Message variant="info">{`Scheduled for ${
+                      value.toString().split(' ')[0]
+                    }.${value.toString().split(' ')[1]}.${
+                      value.toString().split(' ')[2]
+                    }`}</Message>
+                  )}
+                  {scheduleError && (
+                    <Message variant="danger">{scheduleError}</Message>
+                  )}
+                  {success && <Message>Added To Shortlist</Message>}
                 </ListGroup>
               </Card>
             </Col>
